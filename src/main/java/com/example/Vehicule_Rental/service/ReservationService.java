@@ -14,7 +14,7 @@ public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    public Optional<Reservations> getReservation(final int id) {
+    public Optional<Reservations> getReservationById(final int id) {
         return reservationRepository.findById(id);
     }
 

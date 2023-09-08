@@ -1,6 +1,7 @@
 package com.example.Vehicule_Rental.controller;
 
 import com.example.Vehicule_Rental.model.Reservations;
+import com.example.Vehicule_Rental.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +19,17 @@ public class ReservationsController {
         return reservationService.saveReservation(reservations);
     }
     @GetMapping
-    public Reservations getReservations(){
+    public Iterable<Reservations> getReservations(){
         return reservationService.getReservations();
     }
     @GetMapping("/{id}")
-    public Reservations getReservationById(){
+    public Reservations getReservationById(@PathVariable final int id){
         Optional<Reservations> reservation = reservationService.getReservationById(id);
         return reservation.orElse(null);
     }
     @PutMapping("/{id}")
     public Reservations updateReservations(@PathVariable("id") final int id, @RequestBody Reservations reservations){
-        Optional<Reservations> reservation = reservationService.getReservation(id);
+        Optional<Reservations> reservation = reservationService.getReservationById(id);
         if (reservation.isPresent()) {
             Reservations currentReservation = reservation.get();
             Date start_date = reservations.getStart_date();

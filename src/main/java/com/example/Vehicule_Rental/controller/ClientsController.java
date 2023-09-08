@@ -1,6 +1,7 @@
 package com.example.Vehicule_Rental.controller;
 
 import com.example.Vehicule_Rental.model.Clients;
+import com.example.Vehicule_Rental.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +14,8 @@ public class ClientsController {
     @Autowired
     private ClientService clientService;
     @PostMapping
-    public Clients createClients(@RequestBody Clients clients){
-        return clientService.save_clients(clients);
+    public Clients createClients(@RequestBody Clients client){
+        return clientService.saveClient(client);
     }
     @GetMapping
     public Iterable<Clients>getClients(){
@@ -22,13 +23,13 @@ public class ClientsController {
     }
     @GetMapping("{id}")
     public Clients getClientsById(@PathVariable("id") final int id){
-        Optional<Clients> client = clientService.getClient(id);
+        Optional<Clients> client = clientService.getClientById(id);
         return client.orElse(null);
     }
 
     @PutMapping("{id}")
     public Clients updateClients(@PathVariable("id") final int id, @RequestBody Clients clients) {
-        Optional<Clients> client = clientService.getClient(id);
+        Optional<Clients> client = clientService.getClientById(id);
         if (client.isPresent()) {
             Clients currentClient = client.get();
             String last_name = clients.getLast_name();

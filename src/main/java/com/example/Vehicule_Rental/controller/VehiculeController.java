@@ -2,6 +2,7 @@ package com.example.Vehicule_Rental.controller;
 
 import com.example.Vehicule_Rental.model.Vehicules;
 import com.example.Vehicule_Rental.repository.VehiculeRepository;
+import com.example.Vehicule_Rental.service.VehiculeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

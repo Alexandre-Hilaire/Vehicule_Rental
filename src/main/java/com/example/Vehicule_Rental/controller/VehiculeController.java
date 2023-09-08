@@ -3,23 +3,38 @@ package com.example.Vehicule_Rental.controller;
 import com.example.Vehicule_Rental.model.Vehicules;
 import com.example.Vehicule_Rental.repository.VehiculeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("vehicules")
 public class VehiculeController {
 
     /**instancier la bdd
      *
      */
 @Autowired
-private VehiculeRepository vehiculeRepository;
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<Vehicules> getAllVehicules() {
-        return vehiculeRepository.findAll();
-    }
+private VehiculeService vehiculeService;
+
+@GetMapping
+public Iterable<Vehicules>getVehicules(){
+    return vehiculeService.getVehicules();
+}
+@GetMapping("/{id}")
+public Vehicules getVehiculesById(@PathVariable("id") final int id){
+    Optional<Vehicules> vehicules = vehiculeService.getVehicules(id);
+    return vehicules.orElse(null);
+}
+@PostMapping
+    public Vehicules createVehicule(@RequestBody Vehicules vehicules){
+    return vehiculeService.save_vehicules(vehicules);
+}
+@PutMapping("/{id}")
+public Vehicules updateVehicule(@PathVariable("id") int id, @RequestBody Vehicules vehicules){
+
+}
 
 }
 

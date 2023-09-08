@@ -21,13 +21,13 @@ public class ClientsController {
     public Iterable<Clients>getClients(){
         return clientService.getClients();
     }
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Clients getClientsById(@PathVariable("id") final int id){
         Optional<Clients> client = clientService.getClientById(id);
         return client.orElse(null);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public Clients updateClients(@PathVariable("id") final int id, @RequestBody Clients clients) {
         Optional<Clients> client = clientService.getClientById(id);
         if (client.isPresent()) {
@@ -51,7 +51,7 @@ public class ClientsController {
             return null;
         }
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void deleteClients(@PathVariable("id") final int id){
         clientService.deleteClient(id);
     }

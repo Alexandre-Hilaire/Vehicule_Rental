@@ -15,11 +15,11 @@ public class ReservationsController {
     private ReservationService reservationService;
 
     @GetMapping
-    public Reservations createReservation(@RequestBody Reservations reservations){
-        return reservationService.saveReservation(reservations);
+    public Reservations createReservation(@RequestBody Reservations reservation){
+        return reservationService.saveReservation(reservation);
     }
-    @GetMapping
-    public Iterable<Reservations> getReservations(){
+    @GetMapping("/all")
+    public Iterable<Reservations> getAllReservations(){
         return reservationService.getReservations();
     }
     @GetMapping("/{id}")

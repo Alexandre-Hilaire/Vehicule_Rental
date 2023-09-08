@@ -10,7 +10,7 @@ import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("vehicules")
+@RequestMapping("/vehicules")
 public class VehiculeController {
 
 @Autowired
